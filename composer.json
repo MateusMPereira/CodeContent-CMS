@@ -1,0 +1,17 @@
+{
+  "name": "mateus/code-content-cms",
+  "type": "project",
+  "license": "GLP",
+  "autoload": {
+    "psr-4": {
+      "CodeContentCms\\": "app/src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "MateusMPereira",
+      "email": "mateusmichellipereira@gmail.com"
+    }
+  ],
+  "require": {}
+}

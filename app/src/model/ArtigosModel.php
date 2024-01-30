@@ -25,7 +25,7 @@ class ArtigosModel extends Database
      * @param string $condicao - Condição para a seleção (opcional).
      * @return array - Retorna um array associativo com os resultados da seleção.
      */
-    public function selecionar($condicao = '', $operadorLike = true, $nouse = "")
+    public function selecionar($condicao, $operadorLike = true, $nouse = "")
     {
         return parent::selecionar($condicao, $operadorLike, 'artigos');
     }

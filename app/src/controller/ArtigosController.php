@@ -4,13 +4,36 @@ require_once SRC_PATH . "/model/ArtigosModel.php";
 
 class ArtigosController
 {
-/** Seleciona diversos artigos
- * @return array
- */
+    /**
+     * Matriz de retorno de dados para a view
+     * @var \array
+     */
+    public $viewData;
+
+    /** Seleciona diversos artigos
+     * @return void
+     */
     public function index()
     {
         $artigos = new ArtigosModel;
-        return $artigos->selecionar(QUERY_STRING);
+        if (!empty(QUERY_STRING)) {
+            $dadosArtigos = $artigos->selecionar(QUERY_STRING);
+        } else {
+            $dadosArtigos = $artigos->selecionar(['data_criacao' => '2023-12-17'], false);
+        }
+
+        if ($dadosArtigos) {
+            foreach ($dadosArtigos as $artigo) {
+                $this->viewData['titulo_pagina']     = 'Português para Vestibular';
+                $this->viewData['titulo_artigo']     = $artigo['titulo'];
+                $this->viewData['descricao_artigo']  = $artigo['conteudo'];
+                $this->viewData['autor_artigo']      = $artigo['autor'];
+                $this->viewData['publicacao_artigo'] = date("d-m-Y", strtotime($artigo['data_criacao']));
+                $this->viewData['alteracao_artigo']  = date("d-m-Y", strtotime($artigo['data_ultima_modificacao']));
+            }
+        } else {
+            exit(file_get_contents(PUBLIC_PATH . '/errors/404.html'));
+        }
     }
 
     /** Cria um novo artigo
@@ -22,7 +45,7 @@ class ArtigosController
     }
 
     /** Seleciona um artigo pelo ID
-     * @return string
+     * @return void
      */
     public function show()
     {
@@ -30,7 +53,7 @@ class ArtigosController
     }
 
     /** Atualiza um artigo pelo ID
-     * @return string
+     * @return void
      */
     public function update()
     {

@@ -3,15 +3,6 @@
 class Database
 {
     /**
-     * Informações de conexão com o banco de dados
-     * @var string
-     */
-    private $host    = "srv739.hstgr.io";
-    private $usuario = "u514074109_blog_ptparavst";
-    private $senha   = "rufpDdB2!5wU4498@2";
-    private $banco   = "u514074109_blog_ptparavst";
-
-    /**
      * Objeto de conexão mysqli
      * @var \mysqli
      */
@@ -23,7 +14,7 @@ class Database
      */
     public function __construct()
     {
-        $this->conexao = new mysqli($this->host, $this->usuario, $this->senha, $this->banco);
+        $this->conexao = new mysqli(getenv('DB_HOST'), getenv('DB_USER'), getenv('DB_PASS'), getenv('DB_NAME'));
 
         // Verifica se há erros na conexão
         if ($this->conexao->connect_error) {

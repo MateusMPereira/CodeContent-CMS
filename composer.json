@@ -15,5 +15,10 @@
       "email": "mateusmichellipereira@gmail.com"
     }
   ],
-  "require": {}
+  "require-dev": {
+    "phpunit/phpunit": "^9.6"
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit"
+  }
 }

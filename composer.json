@@ -1,7 +1,7 @@
 {
   "name": "mateus/code-content-cms",
   "type": "project",
-  "license": "GLP",
+  "license": "Apache-2.0",
   "autoload": {
     "psr-4": {
       "CodeContentCms\\": "app/src/"

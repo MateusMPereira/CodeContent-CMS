@@ -13,11 +13,12 @@ class Joaquim
 
             require_once SRC_PATH . '//controller//' . $className . '.php';
             $class = new $className;
-            $class->$method();
+            $class->$method(QUERY_STRING);
 
-            $view = file_get_contents(SRC_PATH . '//view//' . $viewName . '.php');
+            $view         = file_get_contents(SRC_PATH . '//view//' . $viewName . '.html');
+            $viewReplaces = $class->viewData;
 
-            exit(Julia::mergeDataView($view, $class->viewData));
+            exit(Julia::mergeDataView($view, $viewReplaces));
         }
     }
 
@@ -29,7 +30,7 @@ class Joaquim
 
             require_once SRC_PATH . '//controller//' . $className . '.php';
             $class = new $className;
-            $class->$method();
+            $class->$method(REQ_BODY);
 
             $view = file_get_contents(SRC_PATH . '//view//' . $viewName . '.php');
 

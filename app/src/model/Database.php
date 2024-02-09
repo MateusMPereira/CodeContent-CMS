@@ -38,8 +38,9 @@ class Database
 
     /**
      * Método para selecionar dados de uma tabela
-     * @param string $tabela - Nome da tabela
      * @param array $condicao - Condição para a seleção (opcional)
+     * @param bool $operadorLike - Usará operador de comparação LIKE ou EQUAL
+     * @param string $tabela - Nome da tabela
      * @return array - Retorna um array associativo com os resultados da seleção
      */
     public function selecionar($condicao, $operadorLike, $tabela)
